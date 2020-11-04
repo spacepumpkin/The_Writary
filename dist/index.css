@@ -1,0 +1,55 @@
+/* @import "../src/reset.css"; */
+/* Global Variables */
+:root {
+  --bg-color: #6c7e90;
+
+}
+
+/* Scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: gray var(--bg-color);
+}
+*::-webkit-scrollbar {
+  width: 6px;
+}
+*::-webkit-scrollbar-track {
+  background: var(--bg-color);
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #fffaef;
+  border-radius   : 20px;
+  border          : 3px solid transparent;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#background {
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+#text-input-canvas {
+  /* width: 1000px;
+  height: 300px; */
+}
+
+#text-input {
+  width: 1000px;
+  height: 300px;
+  box-sizing: border-box;
+  padding: 100px 50px;
+  font: 48px serif;
+  outline: none;
+  background: #fff1d0;
+  resize: none;
+  overflow: hidden;
+}
