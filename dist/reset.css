@@ -66,6 +66,8 @@ button {
   appearance        : none;
   text-decoration: none;
   border: none;
+  font-size: 100%;
+  font: inherit;
   /* outline: none; */
 }
 
