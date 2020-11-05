@@ -1,4 +1,4 @@
-# Pinewood
+# Javascript Project (Name TBD)
 
 ### Stack
 Frontend: HTML5, JS, CSS
