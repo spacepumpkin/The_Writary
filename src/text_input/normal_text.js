@@ -1,44 +1,62 @@
 function TextInput (elmId) {
+  // let FONTSIZE = "48px";
+  // let FONTFAMILY = "serif"
   const textInput = document.getElementById(elmId);
   // textInput.innerText = "Type here to get started";
   // textInput.contentEditable = "true";
 
+  const textInputTitle = document.getElementById(`${elmId}-title`);
   const textInputWrapper = document.getElementById(`${elmId}-wrapper`);
-  
 
-  textInput.addEventListener('input', (e) => shiftPage(e));
+  // * Set initial font + position of paper for typewriter mode
+  textInputWrapper.style.left = "0px";
+  textInputWrapper.addEventListener('input', (e) => shiftPage(e));
+  textInputWrapper.addEventListener('keydown', (e) => handleKeyDown(e));
+  // textInput.addEventListener('input', (e) => shiftPage(e));
+  // textInputTitle.addEventListener('input', (e) => shiftPage(e));
   // textInput.addEventListener('keydown', (e) => shiftPage(e));
-  textInput.style.left = "0px";
   let fullFont = "48px serif"; 
-  async function loadFonts() {
-    const font = new FontFace('PT Mono', 'url(../../dist/fonts/PT_Mono/PTMono-Regular.ttf)');
-    // wait for font to be loaded
-    await font.load().then(function() {
-      fullFont = font; 
-      console.log("fullFont: ", fullFont)
-    });
-    // // add font to document
-    // document.fonts.add(font);
-    // // enable font with CSS class
-    // document.body.classList.add('fonts-loaded');
-  }
-  loadFonts();
 
+  // ! Do I need to load local font? Is the the JS alternative to @font-face?
+  // async function loadFonts() {
+  //   const font = new FontFace('PT Mono', 'url(../../dist/fonts/PT_Mono/PTMono-Regular.ttf)');
+  //   // wait for font to be loaded
+  //   await font.load().then(function() {
+  //     fullFont = font; 
+  //     // console.log("fullFont: ", fullFont.family)
+  //   });
+  //   // // add font to document
+  //   document.fonts.add(font);
+  //   // // enable font with CSS class
+  //   // document.body.classList.add('fonts-loaded');
+  // }
+  // loadFonts();
+
+  // * Handle Enter and Backspace
+  function handleKeyDown (e) {
+    console.log("keydown target: ", e.target);
+    console.log("keydown parent: ", e.currentTarget);
+    console.log(e.currentTarget.style.left);
+    console.log("key: ", e.key);
+    console.log("event: ", e);
+  }
+
+  // * Shifts page depending on key input
   function shiftPage(e) {
     console.log(e.data);
     // let charWidth = Math.floor(getCharWidth(e.data, "serif"));
-    let charWidth = getCharWidth(e.data, "48px serif");
+    let charWidth = getCharWidth(e.data, "48px PT Mono");
     // let charWidth = getCharWidth(e.data, `${fullFont.family}` + " " + "48px");
     // console.log(textInput.style.left.slice(0, -2));
     console.log("charWidth:", charWidth);
     // textInput.style.left = textInput.style.left.slice(0,-2).concat(`${charWidth}`,"px");
     // console.log(textInput.style.left.slice(0,-2).concat(`${charWidth}`,"px"));
-    console.log("currentLeftOffset:", parseFloat(textInput.style.left.slice(0, -2)));
+    console.log("currentLeftOffset:", parseFloat(textInputWrapper.style.left.slice(0, -2)));
     console.log("key: ", e.key);
     if (e.data === null) {
-      textInput.style.left = "0px";
+      textInputWrapper.style.left = "0px";
     } else if (e.data !== undefined || e.data !== null) {
-      textInput.style.left = `${parseFloat(textInput.style.left.slice(0,-2)) - charWidth}` + "px"; //,"px"));
+      textInputWrapper.style.left = `${parseFloat(textInputWrapper.style.left.slice(0,-2)) - charWidth}` + "px"; //,"px"));
     }
     console.log("data null?: ", e.data === null)
   }

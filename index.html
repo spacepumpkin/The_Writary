@@ -13,16 +13,16 @@
 
 <body>
   <div id="root">
-    <h1>Welcome to the Writary</h1>
+    <h1 id="welcome">Welcome to the Writary</h1>
     <nav></nav>
     <canvas id="background"></canvas>
-    <canvas id="desk"></canvas>
-    <canvas id="text-input-canvas"></canvas>
+    <!-- <canvas id="desk"></canvas> -->
+    <!-- <canvas id="text-input-canvas"></canvas> -->
     <div id="text-input-wrapper">
-      <textarea id="text-input" placeholder="here be words" autofocus autocomplete="off" autocorrect="off" autocapitalize="off"
+      <div id="text-input-title" data-placeholder="title" autofocus contenteditable="true" autocomplete="off" autocorrect="off"  
+        autocapitalize="off" spellcheck="false"></div>
+      <textarea id="text-input" placeholder="here be words" autocomplete="off" autocorrect="off" autocapitalize="off"
         spellcheck="false"></textarea>
-      <!-- <div id="text-input-title" data-placeholder="title" contenteditable="true" autocomplete="off" autocorrect="off"  
-        autocapitalize="off" spellcheck="false"></div> -->
     </div>
   </div>
 </body>

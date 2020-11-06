@@ -54,6 +54,10 @@ body {
   font-family: 'PT Mono', monospace;
 }
 
+#welcome {
+  padding: 30px 0;
+}
+
 #background {
   display : block;
   position: fixed;
@@ -71,20 +75,25 @@ body {
   position: relative;
   /* width: 100%; */
   height  : 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: var(--pap-color-2, #fff1d0);
 }
 
 textarea#text-input {
+  display: block;
   position  : relative;
   width     : var(--pap-width, 1000px);
   height    : 300px;
-  padding   : var(--pap-padding-top, 100px) var(--pap-padding-side, 50px);
+  padding   : 0 var(--pap-padding-side, 50px) var(--pap-padding-top, 100px) var(--pap-padding-side, 50px);
   background: var(--pap-color-2, #fff1d0);
   resize    : none;
   /* prevents textarea resizing option */
 
   /* box-shadow : 10px 10px 15px #313941; */
   /* bottom  : 0; */
-  height     : 100%;
+  /* height     : 100%; */
   font-family: 'PT Mono', monospace;
 }
 
@@ -94,21 +103,28 @@ textarea#text-input {
   outline   : none;
   box-sizing: border-box;
   overflow  : hidden;
+  border : 1px solid red;
 }
 
 /* ! Put additional title element on hold */
-/* #text-input-title {
-  position  : absolute;
-  margin    : 0 auto;
+#text-input-title {
+  /* position  : absolute; */
+  display: block;
+  /* height: var(--pap-font-size); */
+  /* height: 100%; */
+  min-height: 50px;
+  /* margin    : 0 auto; */
   text-align: center;
-  left      : 0;
-  right     : 0;
-  top       : var(--pap-padding-top, 100px);
-  border    : 1px solid red;
-} */
+  /* left      : 0; */
+  /* right     : 0; */
+  margin-top: var(--pap-padding-top, 100px);
+  margin-bottom: 70px;
+  /* margin-bottom: 5px; */
+  /* top       : var(--pap-padding-top, 100px); */
+}
 
 /* Add Placeholder */
-/* [contentEditable=true]:empty:before {
+[contentEditable=true]:empty:before {
   content: attr(data-placeholder);
   color  : gray;
-} */
+}
