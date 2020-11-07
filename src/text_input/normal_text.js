@@ -39,6 +39,22 @@ function TextInput (elmId) {
     console.log(e.currentTarget.style.left);
     console.log("key: ", e.key);
     console.log("event: ", e);
+    // console.log(e.target.)
+    switch (e.key) {
+      case "Enter":
+        e.currentTarget.style.left = "500px";
+        // if (e.target.attr("id") == `${elmId}-title`) {
+        //   e.currentTarget.style.left = "500px";
+        // } else {
+        //   e.currentTarget.style.left = "500px";
+        // }
+        break;
+      case "Backspace":
+        let charWidth = getCharWidth(e.data, "48px PT Mono");
+
+      default:
+        break;
+    }
   }
 
   // * Shifts page depending on key input
