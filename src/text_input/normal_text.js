@@ -10,6 +10,7 @@ function TextInput (elmId) {
 
   // * Set initial font + position of paper for typewriter mode
   textInputWrapper.style.left = "0px";
+  
   textInputWrapper.addEventListener('input', (e) => shiftPage(e));
   textInputWrapper.addEventListener('keydown', (e) => handleKeyDown(e));
   // textInput.addEventListener('input', (e) => shiftPage(e));
@@ -34,15 +35,18 @@ function TextInput (elmId) {
 
   // * Handle Enter and Backspace
   function handleKeyDown (e) {
-    console.log("keydown target: ", e.target);
-    console.log("keydown parent: ", e.currentTarget);
-    console.log(e.currentTarget.style.left);
+    // console.log("keydown target: ", e.target);
+    // console.log("keydown parent: ", e.currentTarget);
+    console.log("old left position: ", e.currentTarget.style.left);
     console.log("key: ", e.key);
-    console.log("event: ", e);
+    // console.log("event: ", e);
     // console.log(e.target.)
+    textInputWrapper.style.transition = "all 0.1s";
     switch (e.key) {
       case "Enter":
+        console.log("Enter pressed: ", true);
         e.currentTarget.style.left = "500px";
+        console.log("new left position: ", e.currentTarget.style.left);
         // if (e.target.attr("id") == `${elmId}-title`) {
         //   e.currentTarget.style.left = "500px";
         // } else {
@@ -50,8 +54,13 @@ function TextInput (elmId) {
         // }
         break;
       case "Backspace":
-        let charWidth = getCharWidth(e.data, "48px PT Mono");
-
+        if (parseFloat(e.currentTarget.style.left.slice(0,-2)) >= 500) {
+          e.currentTarget.style.left = "-500px";
+        }
+        let charWidth = getCharWidth("a", "48px PT Mono");
+        e.currentTarget.style.left = `${parseFloat(e.currentTarget.style.left.slice(0, -2)) + charWidth}` + "px";
+        console.log("new left position: ", e.currentTarget.style.left);
+        break;
       default:
         break;
     }
@@ -59,7 +68,7 @@ function TextInput (elmId) {
 
   // * Shifts page depending on key input
   function shiftPage(e) {
-    console.log(e.data);
+    // console.log(e.data);
     // let charWidth = Math.floor(getCharWidth(e.data, "serif"));
     let charWidth = getCharWidth(e.data, "48px PT Mono");
     // let charWidth = getCharWidth(e.data, `${fullFont.family}` + " " + "48px");
@@ -68,22 +77,23 @@ function TextInput (elmId) {
     // textInput.style.left = textInput.style.left.slice(0,-2).concat(`${charWidth}`,"px");
     // console.log(textInput.style.left.slice(0,-2).concat(`${charWidth}`,"px"));
     console.log("currentLeftOffset:", parseFloat(textInputWrapper.style.left.slice(0, -2)));
-    console.log("key: ", e.key);
-    if (e.data === null) {
-      textInputWrapper.style.left = "0px";
-    } else if (e.data !== undefined || e.data !== null) {
+    // console.log("key: ", e.key);
+    // if (e.data === null) {
+    //   textInputWrapper.style.left = "0px";
+    // } else 
+    if (e.data !== undefined && e.data !== null) {
       textInputWrapper.style.left = `${parseFloat(textInputWrapper.style.left.slice(0,-2)) - charWidth}` + "px"; //,"px"));
     }
-    console.log("data null?: ", e.data === null)
+    // console.log("data null?: ", e.data === null)
   }
 
   // Get pixel width of string with canvas
-  function getCharWidth(text, font) {
+  function getCharWidth(char, font) {
     let tempCanvas = getCharWidth.tempCanvas || (getCharWidth.tempCanvas = document.createElement("canvas"));
     let ctx = tempCanvas.getContext("2d");
     ctx.font = font;
-    console.log("text:", text);
-    return ctx.measureText(text).width;
+    console.log("char:", char);
+    return ctx.measureText(char).width;
   }
 
   function centerCursor(elm, pageWidth, avgCharWidth) {

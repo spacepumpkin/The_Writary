@@ -39,7 +39,7 @@ colors:
 }
 
 body {
-  font-family: system;
+  font-family   : system;
   /* background : linear-gradient(rgba(0, 0, 0, 0), rgba(255,241,208, 1)), url("../images/retrosupply.jpg"); */
 }
 
@@ -72,17 +72,28 @@ body {
 }
 
 #text-input-wrapper {
-  position: relative;
-  /* width: 100%; */
-  height  : 100%;
-  display: flex;
+  position      : relative;
+  /* width      : 100%; */
+  height        : 100%;
+  display       : flex;
   flex-direction: column;
-  align-items: center;
-  background: var(--pap-color-2, #fff1d0);
+  align-items   : center;
+  background    : var(--pap-color-2, #fff1d0);
+  left: 0px;
+}
+
+#text-input-wrapper.crlf {
+  -webkit-transition: 3s;
+  -moz-transition   : 3s;
+  -ms-transition    : 3s;
+  -o-transition     : 3s;
+  transition        : 3s;
+  left              : 500px;
+
 }
 
 textarea#text-input {
-  display: block;
+  display   : block;
   position  : relative;
   width     : var(--pap-width, 1000px);
   height    : 300px;
@@ -103,24 +114,24 @@ textarea#text-input {
   outline   : none;
   box-sizing: border-box;
   overflow  : hidden;
-  border : 1px solid red;
+  border    : 1px solid red;
 }
 
 /* ! Put additional title element on hold */
 #text-input-title {
   /* position  : absolute; */
-  display: block;
-  /* height: var(--pap-font-size); */
-  /* height: 100%; */
-  min-height: 50px;
-  /* margin    : 0 auto; */
-  text-align: center;
-  /* left      : 0; */
-  /* right     : 0; */
-  margin-top: var(--pap-padding-top, 100px);
-  margin-bottom: 70px;
+  display         : block;
+  /* height       : var(--pap-font-size); */
+  /* height       : 100%; */
+  min-height      : 50px;
+  /* margin       : 0 auto; */
+  text-align      : center;
+  /* left         : 0; */
+  /* right        : 0; */
+  margin-top      : var(--pap-padding-top, 100px);
+  margin-bottom   : 70px;
   /* margin-bottom: 5px; */
-  /* top       : var(--pap-padding-top, 100px); */
+  /* top          : var(--pap-padding-top, 100px); */
 }
 
 /* Add Placeholder */
