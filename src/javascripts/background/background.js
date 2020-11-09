@@ -10,6 +10,8 @@ const BACKGROUNDS = [
   "alice-donovan-rouse.jpg",
   "alyssa-strohmann.jpg",
 ]
+// Set background folder location for XHR request
+const backgroundFolderPath = "../../images/backgrounds/other_backgrounds";
 
 // Main Script for Generating Background
 function Background(elmId) {
@@ -83,7 +85,7 @@ function Background(elmId) {
   
   // * Runs getImages to fill up myImages array with image file paths
   // Closes around myImages
-  getImages("../../images/other_backgrounds").then(() => {
+  getImages(backgroundFolderPath).then(() => {
     // console.log("myImages: ", myImages);
   })
 
@@ -110,7 +112,7 @@ function Background(elmId) {
         // return myImages; // ! don't know where this ends up
       }
       else {
-        alert('Request failed. Returned status of ' + xhr.status);
+        console.log('Background image request failed. Status ' + xhr.status);
         return [];
       }
     }

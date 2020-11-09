@@ -1,6 +1,6 @@
-const Background = require("./background/background");
-const TextInputCanvas = require("./text_input/canvas_text");
-const TextInput = require("./text_input/normal_text");
+const Background = require("./javascripts/background/background.js");
+const TextInputCanvas = require("./javascripts/text_input/canvas_text");
+const TextInput = require("./javascripts/text_input/normal_text");
 // import TextInput from "./text_input/normal_text";
 
 document.addEventListener("DOMContentLoaded", () => {

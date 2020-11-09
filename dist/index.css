@@ -114,7 +114,7 @@ textarea#text-input {
   outline   : none;
   box-sizing: border-box;
   overflow  : hidden;
-  border    : 1px solid red;
+  /* border    : 1px solid red; */
 }
 
 /* ! Put additional title element on hold */
