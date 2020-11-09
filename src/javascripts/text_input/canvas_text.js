@@ -1,6 +1,6 @@
 // user-input-canvas
-function TextInputCanvas() {
-  const canvasEl = document.getElementById("text-input-canvas");
+function TextInputCanvas(elmId) {
+  const canvasEl = document.getElementById(elmId);
   canvasEl.width = 1000; //window.innerWidth;
   canvasEl.height = 300; //window.innerHeight;
   const ctx = canvasEl.getContext("2d", {
