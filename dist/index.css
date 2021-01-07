@@ -71,7 +71,7 @@ body {
   height: 300px; */
 }
 
-#text-input-wrapper {
+#writing-space {
   position      : relative;
   /* width      : 100%; */
   height        : 100%;
@@ -82,7 +82,7 @@ body {
   left: 0px;
 }
 
-#text-input-wrapper.crlf {
+#writing-space.crlf {
   -webkit-transition: 3s;
   -moz-transition   : 3s;
   -ms-transition    : 3s;

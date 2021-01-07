@@ -6,7 +6,7 @@ function TextInput(elmId) {
   // textInput.contentEditable = "true";
 
   const textInputTitle = document.getElementById(`${elmId}-title`);
-  const textInputWrapper = document.getElementById(`${elmId}-wrapper`);
+  const textInputWrapper = document.getElementById(`writing-space`);
 
   // * Set initial font + position of paper for typewriter mode
   textInputWrapper.style.left = "0px";
