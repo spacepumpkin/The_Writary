@@ -1,7 +1,6 @@
-
 class WritingSpace {
   constructor () {
-
+    
   }
 
   render(child, node) {
