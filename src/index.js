@@ -7,12 +7,14 @@ const TextInput = require("./javascripts/text_input/normal_text");
 document.addEventListener("DOMContentLoaded", () => {
   // * VARIABLES ---------------------------------------------------------------
   // document.body.innerHTML = ""; // resets everything
+  const textInput = document.getElementById("text-input");
 
   // * METHODS -----------------------------------------------------------------
   Background("background");
   // WritingSpace();
   // TextInputCanvas("text-input-canvas");
-  TextInput("text-input");
+  // TextInput("text-input");
+  TextInput(textInput);
 
   // * EVENT LISTENERS ---------------------------------------------------------
 })

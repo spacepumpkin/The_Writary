@@ -15,7 +15,7 @@ colors:
   --pap-width       : 1000px;
   --pap-padding-top : 100px;
   --pap-padding-side: 50px;
-  --pap-font-size   : 48px;
+  --pap-font-size   : 35px;
 }
 
 /* Scrollbar */
@@ -71,7 +71,7 @@ body {
   height: 300px; */
 }
 
-#writing-space {
+#typewriter-paper {
   position      : relative;
   /* width      : 100%; */
   height        : 100%;
@@ -82,7 +82,7 @@ body {
   left: 0px;
 }
 
-#writing-space.crlf {
+#typewriter-paper.crlf {
   -webkit-transition: 3s;
   -moz-transition   : 3s;
   -ms-transition    : 3s;

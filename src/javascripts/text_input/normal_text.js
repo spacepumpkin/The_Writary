@@ -1,13 +1,27 @@
-function TextInput(elmId) {
-  // let FONTSIZE = "48px";
+function TextInput(textInputElm) {
+  const FONTSIZE = "48px";
   // let FONTFAMILY = "serif"
-  const textInput = document.getElementById(elmId);
+  // const textInput = document.getElementById(elmId);
   // textInput.innerText = "Type here to get started";
   // textInput.contentEditable = "true";
-
-  const textInputTitle = document.getElementById(`${elmId}-title`);
-  const textInputWrapper = document.getElementById(`writing-space`);
-
+  const textInput = textInputElm;
+  // const textInputTitle = document.getElementById(`${elmId}-title`);
+  const textInputTitle = document.createElement("div");
+  const textInputAttrs = {
+    "id": "text-input-title",
+    "autofocus": "",
+    "data-placeholder": "title",
+    "contenteditable": "true",
+    "autocomplete": "off",
+    "autocorrect": "off",
+    "autocapitalize": "off",
+    "spellcheck": "false"
+  };
+  for (let key in textInputAttrs) {
+    textInputTitle.setAttribute(key, textInputAttrs[key]);
+  };
+  const textInputWrapper = document.getElementById(`typewriter-paper`);
+  textInputWrapper.insertBefore(textInputTitle, textInput);
   // * Set initial font + position of paper for typewriter mode
   textInputWrapper.style.left = "0px";
 
@@ -23,7 +37,7 @@ function TextInput(elmId) {
   // textInput.addEventListener('keydown', (e) => shiftPage(e));
   let fullFont = "48px serif";
 
-  // * Handle Enter and Backspace
+  // * Handle Enter, Backspace, and Typing Chars
   function handleKeyDown(evt) {
     console.log("old left position: ", evt.currentTarget.style.left);
     console.log("key: ", evt.key);
@@ -36,7 +50,7 @@ function TextInput(elmId) {
         audioEnter.currentTime = 0;
         audioEnter.play();
         console.log("new left position: ", evt.currentTarget.style.left);
-        if (evt.target.getAttribute("id") == `${elmId}-title`) {
+        if (evt.target.getAttribute("id") == `text-input-title`) {
           textInput.focus();
           // textInput.setSelectionRange(0, 1);
         }
@@ -51,7 +65,7 @@ function TextInput(elmId) {
         // }
         audioBackspace.currentTime = 0;
         audioBackspace.play();
-        let charWidth = getCharWidth("a", "48px PT Mono");
+        let charWidth = getCharWidth("a", `${FONTSIZE} PT Mono`);
         evt.currentTarget.style.left = `${parseFloat(evt.currentTarget.style.left.slice(0, -2)) + charWidth}` + "px";
         console.log("new left position: ", evt.currentTarget.style.left);
         break;
@@ -60,7 +74,7 @@ function TextInput(elmId) {
         audioSpacebar.play();
         break;
       default:
-        if (evt.key !== "Meta") {
+        if (evt.key !== "Meta" && evt.key !== "Tab" && evt.key !== "Shift") {
           audioChar.currentTime = 0;
           audioChar.play();
         }
@@ -72,7 +86,7 @@ function TextInput(elmId) {
   function shiftPage(evt) {
     // console.log(evt.data);
     // let charWidth = Math.floor(getCharWidth(evt.data, "serif"));
-    let charWidth = getCharWidth(evt.data, "48px PT Mono");
+    let charWidth = getCharWidth(evt.data, `${FONTSIZE} PT Mono`);
     // let charWidth = getCharWidth(evt.data, `${fullFont.family}` + " " + "48px");
     // console.log(textInput.style.left.slice(0, -2));
     console.log("charWidth:", charWidth);
