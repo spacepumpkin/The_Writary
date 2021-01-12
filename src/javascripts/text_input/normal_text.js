@@ -1,6 +1,7 @@
 function TextInput(textInputElm) {
   const FONTSIZE = "48px";
   // let FONTFAMILY = "serif"
+  const INPUTWIDTH = 900;
   // const textInput = document.getElementById(elmId);
   // textInput.innerText = "Type here to get started";
   // textInput.contentEditable = "true";
@@ -35,7 +36,9 @@ function TextInput(textInputElm) {
   // textInput.addEventListener('input', (e) => shiftPage(e));
   // textInputTitle.addEventListener('input', (e) => shiftPage(e));
   // textInput.addEventListener('keydown', (e) => shiftPage(e));
-  let fullFont = "48px serif";
+  // let fullFont = "48px serif";
+  let numChars = 0;
+  debugger
 
   // * Handle Enter, Backspace, and Typing Chars
   function handleKeyDown(evt) {
@@ -92,13 +95,26 @@ function TextInput(textInputElm) {
     console.log("charWidth:", charWidth);
     // textInput.style.left = textInput.style.left.slice(0,-2).concat(`${charWidth}`,"px");
     // console.log(textInput.style.left.slice(0,-2).concat(`${charWidth}`,"px"));
-    console.log("currentLeftOffset:", parseFloat(textInputWrapper.style.left.slice(0, -2)));
+    // let maxPageWidth = `${500 + }`
+    const currentLeftOffset = parseInt(textInputWrapper.style.left.slice(0, -2));
+    console.log("currentLeftOffset:", currentLeftOffset);
     // console.log("key: ", evt.key);
     // if (evt.data === null) {
     //   textInputWrapper.style.left = "0px";
     // } else 
+
+    if (currentLeftOffset <= -INPUTWIDTH/2) {
+      audioEnter.currentTime = 0;
+      audioEnter.play();
+      textInputWrapper.style.left = "500px";
+      numChars++;
+      console.log("numChars: ", numChars);
+      return;
+    }
     if (evt.data !== undefined && evt.data !== null) {
       textInputWrapper.style.left = `${parseFloat(textInputWrapper.style.left.slice(0, -2)) - charWidth}` + "px"; //,"px"));
+      numChars++;
+      console.log("numChars: ", numChars);
     }
     // console.log("data null?: ", evt.data === null)
   }
