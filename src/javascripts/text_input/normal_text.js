@@ -7,7 +7,7 @@ function TextInput(textInputElm) {
   // textInput.innerText = "Type here to get started";
   // textInput.contentEditable = "true";
   const textInputValue = textInputElm.value;
-  
+
   const textInput = textInputElm;
   // const textInputTitle = document.getElementById(`${elmId}-title`);
   const textInputTitle = document.createElement("div");
@@ -41,21 +41,25 @@ function TextInput(textInputElm) {
   // textInput.addEventListener('keydown', (e) => shiftPage(e));
   // let fullFont = "48px serif";
   let numChars = 0;
+  let prevLineEndPos = 0;
 
   // * Handle Enter, Backspace, and Typing Chars
   function handleKeyDown(evt) {
-    console.log("old left position: ", evt.currentTarget.style.left);
-    console.log("key: ", evt.key);
-    console.log("code: ", evt.code);
+    // console.log("old left position: ", evt.currentTarget.style.left);
+    // console.log("key: ", evt.key);
+    // console.log("code: ", evt.code);
     textInputWrapper.style.transition = "all 0.1s";
+    const currentLeftOffset = parseFloat(evt.currentTarget.style.left.slice(0, -2));
     switch (evt.code) {
       case "Enter":
-        console.log("Enter pressed: ", true);
+        // console.log("Enter pressed: ", true);
         // evt.currentTarget.style.left = "500px";
-        evt.currentTarget.style.left = `${(INPUTWIDTH/2)}px`;
+        prevLineEndPos = parseFloat(evt.currentTarget.style.left.slice(0, -2));
+        console.log("prevLineEndPos: ", prevLineEndPos, " px");
+        evt.currentTarget.style.left = `${(INPUTWIDTH / 2)}px`;
         audioEnter.currentTime = 0;
         audioEnter.play();
-        console.log("new left position: ", evt.currentTarget.style.left);
+        // console.log("new left position: ", evt.currentTarget.style.left);
         if (evt.target.getAttribute("id") == `text-input-title`) {
           textInput.focus();
           // textInput.setSelectionRange(0, 1);
@@ -72,8 +76,14 @@ function TextInput(textInputElm) {
         audioBackspace.currentTime = 0;
         audioBackspace.play();
         let charWidth = getCharWidth("a", `${FONTSIZE} PT Mono`);
+        let leftBoundary = (INPUTWIDTH / 2);
         evt.currentTarget.style.left = `${parseFloat(evt.currentTarget.style.left.slice(0, -2)) + charWidth}` + "px";
-        console.log("new left position: ", evt.currentTarget.style.left);
+        if (currentLeftOffset > leftBoundary) {
+          evt.currentTarget.style.left = `${(prevLineEndPos)}px`;
+          numChars--;
+          console.log("numChars: ", numChars);
+        }
+        // console.log("new left position: ", evt.currentTarget.style.left);
         break;
       case "Space":
         audioSpacebar.currentTime = 0;
@@ -81,7 +91,7 @@ function TextInput(textInputElm) {
         break;
       default:
         if (evt.key !== "Meta" && evt.key !== "Tab" && evt.key !== "Shift" &&
-        evt.key.substring(0,5) !== "Arrow") {
+          evt.key.substring(0, 5) !== "Arrow") {
           audioChar.currentTime = 0;
           audioChar.play();
         }
@@ -96,12 +106,12 @@ function TextInput(textInputElm) {
     let charWidth = getCharWidth(evt.data, `${FONTSIZE} PT Mono`);
     // let charWidth = getCharWidth(evt.data, `${fullFont.family}` + " " + "48px");
     // console.log(textInput.style.left.slice(0, -2));
-    console.log("charWidth:", charWidth);
+    // console.log("charWidth:", charWidth);
     // textInput.style.left = textInput.style.left.slice(0,-2).concat(`${charWidth}`,"px");
     // console.log(textInput.style.left.slice(0,-2).concat(`${charWidth}`,"px"));
     // let maxPageWidth = `${500 + }`
-    const currentLeftOffset = parseInt(textInputWrapper.style.left.slice(0, -2)) - charWidth;
-    console.log("currentLeftOffset:", currentLeftOffset);
+    const currentLeftOffset = parseFloat(textInputWrapper.style.left.slice(0, -2)) - charWidth;
+    // console.log("currentLeftOffset:", currentLeftOffset);
     // console.log("key: ", evt.key);
     // if (evt.data === null) {
     //   textInputWrapper.style.left = "0px";
@@ -110,15 +120,27 @@ function TextInput(textInputElm) {
     let startPos = textInput.selectionStart;
     let endPos = textInput.selectionEnd;
     console.log(startPos + ", " + endPos);
-    debugger
-    if (currentLeftOffset <= (-INPUTWIDTH/2)+charWidth) {
+    let rightBoundary = (-INPUTWIDTH / 2) + charWidth;
+    // let leftBoundary = (INPUTWIDTH / 2);
+    let text = textInput.value;
+    console.log(text.length + text.replace(/[^\n]/g, '').length);
+    if (currentLeftOffset <= rightBoundary) {
       audioEnter.currentTime = 0;
       audioEnter.play();
       // textInputWrapper.style.left = `${(INPUTWIDTH / 2)}px`;
+      prevLineEndPos = parseFloat(evt.currentTarget.style.left.slice(0, -2));
+      console.log("prevLineEndPos: ", prevLineEndPos, " px");
       evt.currentTarget.style.left = `${(INPUTWIDTH / 2)}px`;
       numChars++;
       console.log("numChars: ", numChars);
       return;
+      // } else if (currentLeftOffset >= leftBoundary) {
+      //   audioBackspace.currentTime = 0;
+      //   audioBackspace.play();
+      //   evt.currentTarget.style.left = `${(rightBoundary)}px`;
+      //   numChars--;
+      //   console.log("numChars: ", numChars);
+      //   return;
     }
     if (evt.data !== undefined && evt.data !== null) {
       textInputWrapper.style.left = `${parseFloat(textInputWrapper.style.left.slice(0, -2)) - charWidth}` + "px"; //,"px"));
@@ -133,7 +155,7 @@ function TextInput(textInputElm) {
     let tempCanvas = getCharWidth.tempCanvas || (getCharWidth.tempCanvas = document.createElement("canvas"));
     let ctx = tempCanvas.getContext("2d");
     ctx.font = font;
-    console.log("char:", char);
+    // console.log("char:", char);
     return ctx.measureText(char).width;
   }
 
