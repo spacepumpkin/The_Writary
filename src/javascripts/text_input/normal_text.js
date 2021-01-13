@@ -6,6 +6,8 @@ function TextInput(textInputElm) {
   // const textInput = document.getElementById(elmId);
   // textInput.innerText = "Type here to get started";
   // textInput.contentEditable = "true";
+  const textInputValue = textInputElm.value;
+  
   const textInput = textInputElm;
   // const textInputTitle = document.getElementById(`${elmId}-title`);
   const textInputTitle = document.createElement("div");
@@ -78,7 +80,8 @@ function TextInput(textInputElm) {
         audioSpacebar.play();
         break;
       default:
-        if (evt.key !== "Meta" && evt.key !== "Tab" && evt.key !== "Shift") {
+        if (evt.key !== "Meta" && evt.key !== "Tab" && evt.key !== "Shift" &&
+        evt.key.substring(0,5) !== "Arrow") {
           audioChar.currentTime = 0;
           audioChar.play();
         }
@@ -107,8 +110,8 @@ function TextInput(textInputElm) {
     let startPos = textInput.selectionStart;
     let endPos = textInput.selectionEnd;
     console.log(startPos + ", " + endPos);
-
-    if (currentLeftOffset <= (-INPUTWIDTH/2)) {
+    debugger
+    if (currentLeftOffset <= (-INPUTWIDTH/2)+charWidth) {
       audioEnter.currentTime = 0;
       audioEnter.play();
       // textInputWrapper.style.left = `${(INPUTWIDTH / 2)}px`;
