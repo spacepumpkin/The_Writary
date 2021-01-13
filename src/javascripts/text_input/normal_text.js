@@ -1,7 +1,8 @@
 function TextInput(textInputElm) {
-  const FONTSIZE = "48px";
+  const FONTSIZE = "35px";
   // let FONTFAMILY = "serif"
-  const INPUTWIDTH = 900;
+  const PAPERWIDTH = 1000; // width of whole paper in px
+  const INPUTWIDTH = 900; // width of text area in px
   // const textInput = document.getElementById(elmId);
   // textInput.innerText = "Type here to get started";
   // textInput.contentEditable = "true";
@@ -38,7 +39,6 @@ function TextInput(textInputElm) {
   // textInput.addEventListener('keydown', (e) => shiftPage(e));
   // let fullFont = "48px serif";
   let numChars = 0;
-  debugger
 
   // * Handle Enter, Backspace, and Typing Chars
   function handleKeyDown(evt) {
@@ -49,7 +49,8 @@ function TextInput(textInputElm) {
     switch (evt.code) {
       case "Enter":
         console.log("Enter pressed: ", true);
-        evt.currentTarget.style.left = "500px";
+        // evt.currentTarget.style.left = "500px";
+        evt.currentTarget.style.left = `${(INPUTWIDTH/2)}px`;
         audioEnter.currentTime = 0;
         audioEnter.play();
         console.log("new left position: ", evt.currentTarget.style.left);
@@ -96,17 +97,22 @@ function TextInput(textInputElm) {
     // textInput.style.left = textInput.style.left.slice(0,-2).concat(`${charWidth}`,"px");
     // console.log(textInput.style.left.slice(0,-2).concat(`${charWidth}`,"px"));
     // let maxPageWidth = `${500 + }`
-    const currentLeftOffset = parseInt(textInputWrapper.style.left.slice(0, -2));
+    const currentLeftOffset = parseInt(textInputWrapper.style.left.slice(0, -2)) - charWidth;
     console.log("currentLeftOffset:", currentLeftOffset);
     // console.log("key: ", evt.key);
     // if (evt.data === null) {
     //   textInputWrapper.style.left = "0px";
     // } else 
 
-    if (currentLeftOffset <= -INPUTWIDTH/2) {
+    let startPos = textInput.selectionStart;
+    let endPos = textInput.selectionEnd;
+    console.log(startPos + ", " + endPos);
+
+    if (currentLeftOffset <= (-INPUTWIDTH/2)) {
       audioEnter.currentTime = 0;
       audioEnter.play();
-      textInputWrapper.style.left = "500px";
+      // textInputWrapper.style.left = `${(INPUTWIDTH / 2)}px`;
+      evt.currentTarget.style.left = `${(INPUTWIDTH / 2)}px`;
       numChars++;
       console.log("numChars: ", numChars);
       return;

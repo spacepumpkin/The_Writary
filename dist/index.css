@@ -105,7 +105,7 @@ textarea#text-input {
   /* bottom  : 0; */
   /* height     : 100%; */
   font-family: 'PT Mono', monospace;
-  letter-spacing: 0.17em;
+  /* letter-spacing: 0.17em; */
 }
 
 #text-input,
