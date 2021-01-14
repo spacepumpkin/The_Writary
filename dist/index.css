@@ -12,7 +12,7 @@ colors:
   --bg-color        : #c3cad2;
   --pap-color-1     : #fffaef;
   --pap-color-2     : #fff1d0;
-  --pap-width       : 1000px;
+  --pap-width       : 800px;
   --pap-padding-top : 100px;
   --pap-padding-side: 50px;
   --pap-font-size   : 35px;
@@ -40,7 +40,11 @@ colors:
 
 body {
   font-family   : system;
-  /* background : linear-gradient(rgba(0, 0, 0, 0), rgba(255,241,208, 1)), url("../images/retrosupply.jpg"); */
+  background-color: whitesmoke;
+  /* background: url("../images/backgrounds/cafetabletop1.jpg") center no-repeat cover; */
+  /* background-image: url("../images/backgrounds/cafetabletop1.jpg"); */
+  background : linear-gradient(rgba(0, 0, 0, 0), rgba(255,241,208, 0.5) 80%, rgba(255, 241, 208, 1)), url("../images/backgrounds/flat_lay/retrosupply.jpg");
+  /* background : linear-gradient(0deg, rgba(0, 0, 0, 0), rgba(255, 241, 208, 0.4) 90%, rgba(255, 241, 208, 1)), url("../images/backgrounds/cafetabletop1.jpg"); */
 }
 
 #root {

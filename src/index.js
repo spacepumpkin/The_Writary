@@ -10,7 +10,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const textInput = document.getElementById("text-input");
 
   // * METHODS -----------------------------------------------------------------
-  Background("background");
+  // Background("background");
+  
   // WritingSpace();
   // TextInputCanvas("text-input-canvas");
   // TextInput("text-input");
