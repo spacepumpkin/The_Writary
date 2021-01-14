@@ -80,10 +80,13 @@ body {
 #typewriter-paper {
   position      : relative;
   /* width      : 100%; */
+  box-sizing: border-box;
+  width : var(--pap-width, 800px);
   height        : 100%;
   display       : flex;
   flex-direction: column;
   align-items   : center;
+  padding: 0 var(--pap-padding-side, 50px) 0 var(--pap-padding-side, 50px);
   /* background    : linear-gradient(0deg, rgba(0, 0, 0, 0.3), rgba(255, 241, 208, 0.5) 20%, rgba(255, 241, 208, 1)), var(--pap-color-2, #fff1d0); */
   background    : linear-gradient(0deg, rgba(0, 0, 0, 0.3), rgba(255, 241, 208, 0.5) 50%, rgba(255, 241, 208, 1)), url("../images/papers/coffeestain-anniespratt.jpg");
   background-size: cover;
@@ -104,10 +107,10 @@ body {
 textarea#text-input {
   display   : block;
   position  : relative;
-  width     : var(--pap-width, 1000px);
+  width: 100%;
   /* height    : 300px; */
   height: 100%;
-  padding   : 0 var(--pap-padding-side, 50px) var(--pap-padding-top, 100px) var(--pap-padding-side, 50px);
+  /* padding   : 0 var(--pap-padding-side, 50px) var(--pap-padding-top, 100px) var(--pap-padding-side, 50px); */
   /* background: var(--pap-color-2, #fff1d0); */
   resize    : none;
   background: transparent;
@@ -128,7 +131,7 @@ textarea#text-input {
   box-sizing: border-box; /* could this be affecting some of our calcs? */
   overflow  : hidden;
   /* white-space: nowrap; */
-  border    : 1px dotted gray;
+  /* border    : 1px dotted gray; */
   /* caret-color: #d0deff; */
   color: rgb(92, 92, 92);
   cursor: url("../images/vintage_caret.png"),default;
