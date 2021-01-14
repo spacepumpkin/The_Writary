@@ -2,7 +2,7 @@ function TextInput(textInputElm) {
   const FONTSIZE = "35px";
   // let FONTFAMILY = "serif"
   const PAPERWIDTH = 800; // width of whole paper in px
-  const INPUTWIDTH = 600; // width of text area in px
+  const INPUTWIDTH = 700; // width of text area in px
   // const textInput = document.getElementById(elmId);
   // textInput.innerText = "Type here to get started";
   // textInput.contentEditable = "true";
