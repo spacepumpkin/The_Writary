@@ -122,13 +122,22 @@ function TextInput(textInputElm) {
     console.log(startPos + ", " + endPos);
     let rightBoundary = (-INPUTWIDTH / 2) + charWidth;
     // let leftBoundary = (INPUTWIDTH / 2);
+
+    // ! Testing splitting on line breaks to get array of separate lines
     let text = textInput.value;
-    console.log(text.length + text.replace(/[^\n]/g, '').length);
+    let numLineBreaks = (text.match(/\r?\n|\r/g) || '').length;
+    let totalTextLength = text.length + numLineBreaks;
+    console.log("total text length: ", totalTextLength);
+    console.log("num line breaks: ", numLineBreaks);
+    console.log("lines: ", text.split(/[\r?\n]+/g));
+
+
     if (currentLeftOffset <= rightBoundary) {
       audioEnter.currentTime = 0;
       audioEnter.play();
       // textInputWrapper.style.left = `${(INPUTWIDTH / 2)}px`;
-      prevLineEndPos = parseFloat(evt.currentTarget.style.left.slice(0, -2));
+      // prevLineEndPos = parseFloat(evt.currentTarget.style.left.slice(0, -2));
+      prevLineEndPos = -(INPUTWIDTH / 2);
       console.log("prevLineEndPos: ", prevLineEndPos, " px");
       evt.currentTarget.style.left = `${(INPUTWIDTH / 2)}px`;
       numChars++;
