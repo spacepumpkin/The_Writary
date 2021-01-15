@@ -1,5 +1,5 @@
 function TextInput(textInputElm) {
-  const FONTSIZE = "35px";
+  const FONTSIZE = "25px";
   // let FONTFAMILY = "serif"
   const PAPERWIDTH = 800; // width of whole paper in px
   const INPUTWIDTH = 700; // width of text area in px
@@ -78,7 +78,8 @@ function TextInput(textInputElm) {
         let charWidth = getCharWidth("a", `${FONTSIZE} PT Mono`);
         let leftBoundary = (INPUTWIDTH / 2);
         evt.currentTarget.style.left = `${parseFloat(evt.currentTarget.style.left.slice(0, -2)) + charWidth}` + "px";
-        if (currentLeftOffset > leftBoundary) {
+        if (currentLeftOffset > leftBoundary-charWidth) {
+          console.log("prevLineEndPos: ", prevLineEndPos, " px");
           evt.currentTarget.style.left = `${(prevLineEndPos)}px`;
           numChars--;
           console.log("numChars: ", numChars);
@@ -139,7 +140,8 @@ function TextInput(textInputElm) {
       // prevLineEndPos = parseFloat(evt.currentTarget.style.left.slice(0, -2));
       prevLineEndPos = -(INPUTWIDTH / 2);
       console.log("prevLineEndPos: ", prevLineEndPos, " px");
-      evt.currentTarget.style.left = `${(INPUTWIDTH / 2)}px`;
+      // evt.currentTarget.style.left = `${(INPUTWIDTH / 2)}px`;
+      textInputWrapper.style.left = `${(INPUTWIDTH / 2)}px`;
       numChars++;
       console.log("numChars: ", numChars);
       return;

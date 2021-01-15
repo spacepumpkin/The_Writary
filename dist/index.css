@@ -15,7 +15,7 @@ colors:
   --pap-width       : 800px;
   --pap-padding-top : 100px;
   --pap-padding-side: 50px;
-  --pap-font-size   : 35px;
+  --pap-font-size   : 25px;
 }
 
 /* Scrollbar */
@@ -58,6 +58,15 @@ body {
 
   height     : 100%;
   font-family: 'PT Mono', monospace;
+}
+
+#center-line {
+  height: 100%;
+  /* width: 1px; */
+  border-left: 1px solid black;
+  position: absolute;
+  left: var(--pap-width/2);
+  z-index: 1;
 }
 
 #welcome {
@@ -155,7 +164,7 @@ textarea#text-input {
   /* left         : 0; */
   /* right        : 0; */
   margin-top      : var(--pap-padding-top, 100px);
-  margin-bottom   : 70px;
+  margin-bottom   : 30px;
   /* margin-bottom: 5px; */
   /* top          : var(--pap-padding-top, 100px); */
 }
