@@ -50,6 +50,11 @@ function TextInput(textInputElm) {
     // console.log("code: ", evt.code);
     textInputWrapper.style.transition = "all 0.1s";
     const currentLeftOffset = parseFloat(evt.currentTarget.style.left.slice(0, -2));
+    
+    let paperTop = parseInt(getComputedStyle(textInputWrapper).top);
+    let lineHeight = parseInt(getComputedStyle(textInput).lineHeight);
+    let paperHeight = parseInt(getComputedStyle(textInputWrapper).height);
+
     switch (evt.code) {
       case "Enter":
         // console.log("Enter pressed: ", true);
@@ -57,6 +62,10 @@ function TextInput(textInputElm) {
         prevLineEndPos = parseFloat(evt.currentTarget.style.left.slice(0, -2));
         console.log("prevLineEndPos: ", prevLineEndPos, " px");
         evt.currentTarget.style.left = `${(INPUTWIDTH / 2)}px`;
+        
+        evt.currentTarget.style.top = (paperTop - lineHeight) + 'px';
+        evt.currentTarget.style.height = (paperHeight + lineHeight) + 'px';
+        
         audioEnter.currentTime = 0;
         audioEnter.play();
         // console.log("new left position: ", evt.currentTarget.style.left);
@@ -81,8 +90,12 @@ function TextInput(textInputElm) {
         if (currentLeftOffset > leftBoundary-charWidth) {
           console.log("prevLineEndPos: ", prevLineEndPos, " px");
           evt.currentTarget.style.left = `${(prevLineEndPos)}px`;
+
+          evt.currentTarget.style.top = (paperTop + lineHeight) + 'px';
+          evt.currentTarget.style.height = (paperHeight - lineHeight) + 'px';
+
           numChars--;
-          console.log("numChars: ", numChars);
+          // console.log("numChars: ", numChars);
         }
         // console.log("new left position: ", evt.currentTarget.style.left);
         break;
@@ -132,7 +145,6 @@ function TextInput(textInputElm) {
     console.log("num line breaks: ", numLineBreaks);
     console.log("lines: ", text.split(/[\r?\n]+/g));
 
-
     if (currentLeftOffset <= rightBoundary) {
       audioEnter.currentTime = 0;
       audioEnter.play();
@@ -142,8 +154,15 @@ function TextInput(textInputElm) {
       console.log("prevLineEndPos: ", prevLineEndPos, " px");
       // evt.currentTarget.style.left = `${(INPUTWIDTH / 2)}px`;
       textInputWrapper.style.left = `${(INPUTWIDTH / 2)}px`;
+      let paperTop = parseInt(getComputedStyle(textInputWrapper).top);
+      let lineHeight = parseInt(getComputedStyle(textInput).lineHeight);
+      let paperHeight = parseInt(getComputedStyle(textInputWrapper).height);
+
+      textInputWrapper.style.top = (paperTop - lineHeight) + 'px';
+      textInputWrapper.style.height = (paperHeight + lineHeight) + 'px';
+
       numChars++;
-      console.log("numChars: ", numChars);
+      // console.log("numChars: ", numChars);
       return;
       // } else if (currentLeftOffset >= leftBoundary) {
       //   audioBackspace.currentTime = 0;
@@ -156,7 +175,7 @@ function TextInput(textInputElm) {
     if (evt.data !== undefined && evt.data !== null) {
       textInputWrapper.style.left = `${parseFloat(textInputWrapper.style.left.slice(0, -2)) - charWidth}` + "px"; //,"px"));
       numChars++;
-      console.log("numChars: ", numChars);
+      // console.log("numChars: ", numChars);
     }
     // console.log("data null?: ", evt.data === null)
   }

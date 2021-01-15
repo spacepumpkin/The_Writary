@@ -47,6 +47,7 @@ body {
   background : linear-gradient(0deg, rgba(0, 0, 0, 0.1), rgba(255, 241, 208, 0.5) 80%, rgba(255, 241, 208, 1)), url("../images/backgrounds/cafetabletop1.jpg");
   background-size: cover;
   cursor: url("../images/vintage_cursor.png"),default;
+  overflow-x: hidden;
 }
 
 #root {
