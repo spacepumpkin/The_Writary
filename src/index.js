@@ -4,6 +4,9 @@ const TextInput = require("./javascripts/text_input/normal_text");
 // const WritingSpace = require('./javascripts/writing_space');
 // import TextInput from "./text_input/normal_text";
 
+const cafeAudio = document.getElementById("background-cafe");
+const rainAudio = document.getElementById("background-rain");
+
 document.addEventListener("DOMContentLoaded", () => {
   // * VARIABLES ---------------------------------------------------------------
   // document.body.innerHTML = ""; // resets everything
