@@ -15,10 +15,16 @@
 <body>
   <div id="root">
     <h1 id="welcome">Welcome to the Writary</h1>
+    <h3 id="description">
+      This is a typewriter simulator that recreates the movement of the page 
+      and the sounds made by a 1960s-era typewriter. You can toggle background
+      sounds at the top right to suit your atmosphere.
+      Sit back, relax, and, if you can't think of something to write, try talking about your day.
+    </h3>
     <!-- <canvas id="background"></canvas> -->
     <!-- <canvas id="desk"></canvas> -->
     <!-- <canvas id="text-input-canvas"></canvas> -->
-    <div id="center-line"></div>
+    <!-- <div id="center-line"></div> -->
     <div id="writing-space">
 
     </div>
@@ -28,15 +34,18 @@
       <textarea id="text-input" autocomplete="off" autocorrect="off" autocapitalize="off"
         spellcheck="false"></textarea>
     </div>
-    <button class="sound-button cafe-on" type="button"></button>
-    <button class="sound-button rain-on" type="button"></button>
+    <div id="sound-buttons">
+      <button id="cafe-button" class="sound-button off" type="button"></button>
+      <button id="rain-button" class="sound-button off" type="button"></button>
+    </div>
+    <p id="credits">Credit to Subtersonic for the Brother Charger 11 sound samples. Background sounds by RainyCafe. </p>
   </div>
-  <audio id="key-char" src="./src/sounds/char.mp3">"Sorry, your browser does not support HTML5 audio"</audio>
-  <audio id="key-spacebar" src="./src/sounds/spacebar.mp3">"Unsupported"</audio>
-  <audio id="key-backspace" src="./src/sounds/backspace.mp3">"Unsupported"</audio>
-  <audio id="key-enter" src="./src/sounds/enter2.mp3">"Unsupported"</audio>
-  <audio id="background-cafe" src="./src/sounds/cafe.mp3">"Unsupported</audio>
-  <audio id="background-rain" src="./src/sounds/rain.mp3">"Unsupported</audio>
+  <audio id="key-char" class="type-sound" src="./src/sounds/char.mp3">"Sorry, your browser does not support HTML5 audio"</audio>
+  <audio id="key-spacebar" class="type-sound" src="./src/sounds/spacebar.mp3">"Unsupported"</audio>
+  <audio id="key-backspace" class="type-sound" src="./src/sounds/backspace.mp3">"Unsupported"</audio>
+  <audio id="key-enter" class="type-sound" src="./src/sounds/enter2.mp3">"Unsupported"</audio>
+  <audio id="cafe-button-audio" src="./src/sounds/cafe.mp3" loop>"Unsupported</audio>
+  <audio id="rain-button-audio" src="./src/sounds/rain.mp3" loop>"Unsupported</audio>
 </body>
 
 </html>

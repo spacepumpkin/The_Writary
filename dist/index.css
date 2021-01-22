@@ -44,9 +44,11 @@ body {
   /* background      : url("../images/backgrounds/cafetabletop1.jpg") center no-repeat cover; */
   /* background-image: url("../images/backgrounds/cafetabletop1.jpg"); */
   /* background      : linear-gradient(rgba(0, 0, 0, 0), rgba(255,241,208, 0.5) 80%, rgba(255, 241, 208, 1)), url("../images/backgrounds/flat_lay/retrosupply.jpg"); */
-  background         : linear-gradient(0deg, rgba(0, 0, 0, 0.1), rgba(255, 241, 208, 0.5) 80%, rgba(255, 241, 208, 1)), url("../images/backgrounds/cafetabletop1.jpg");
+  min-height         : 100vh;
+  background         : linear-gradient(0deg, rgba(0, 0, 0, 0.1), rgba(255, 241, 208, 0.5) 80%, rgba(255, 241, 208, 1)), url("../images/backgrounds/cafetabletop1.jpg") no-repeat center;
   background-size    : cover;
   overflow-x         : hidden;
+  overflow-y         : hidden;
   cursor             : url("../images/vintage_cursor.png"), default;
 }
 
@@ -59,6 +61,7 @@ body {
 
   height     : 100%;
   font-family: 'PT Mono', monospace;
+  transition: all 0.3s ease 0s;
 }
 
 #center-line {
@@ -72,6 +75,14 @@ body {
 
 #welcome {
   padding: 30px 0;
+}
+
+#description {
+  font-size: small;
+  max-width: var(--pap-width);
+  text-align: center;
+  padding: 0 15px;
+  line-height: 1.7;
 }
 
 #background {
@@ -88,20 +99,25 @@ body {
 }
 
 #typewriter-paper {
-  position         : relative;
-  /* width         : 100%; */
-  box-sizing       : border-box;
-  width            : var(--pap-width, 800px);
-  height           : 100%;
-  display          : flex;
-  flex-direction   : column;
-  align-items      : center;
-  padding          : 0 var(--pap-padding-side, 50px) 0 var(--pap-padding-side, 50px);
-  /* background    : linear-gradient(0deg, rgba(0, 0, 0, 0.3), rgba(255, 241, 208, 0.5) 20%, rgba(255, 241, 208, 1)), var(--pap-color-2, #fff1d0); */
-  background       : linear-gradient(0deg, rgba(0, 0, 0, 0.3), rgba(255, 241, 208, 0.5) 50%, rgba(255, 241, 208, 1)), url("../images/papers/coffeestain-anniespratt.jpg");
-  background-size  : cover;
-  border-radius    : 95% 5% 100% 0% / 4% 100% 0% 96%;
-  left             : 0px;
+  position            : relative;
+  top                 : 400px;
+  /* width            : 100%; */
+  box-sizing          : border-box;
+  width               : var(--pap-width, 800px);
+  /* margin-bottom    : auto; */
+  height              : 100%;
+  /* max-height       : 100vh; */
+  /* height           : calc(100vh - 450px); */
+  display             : flex;
+  flex-direction      : column;
+  align-items         : center;
+  padding             : 0 var(--pap-padding-side, 50px) 0 var(--pap-padding-side, 50px);
+  /* background       : linear-gradient(0deg, rgba(0, 0, 0, 0.3), rgba(255, 241, 208, 0.5) 20%, rgba(255, 241, 208, 1)), var(--pap-color-2, #fff1d0); */
+  background          : linear-gradient(0deg, rgba(0, 0, 0, 0.3), rgba(255, 241, 208, 0.5) 50%, rgba(255, 241, 208, 1)), url("../images/papers/coffeestain-anniespratt.jpg");
+  background-size     : cover;
+  border-radius       : 95% 5% 100% 0% / 4% 100% 0% 96%;
+  left                : 0px;
+  transition: all 0.3s ease 0s;
 }
 
 #typewriter-paper.crlf {
@@ -115,17 +131,17 @@ body {
 }
 
 textarea#text-input {
-  display         : block;
-  position        : relative;
-  width           : 100%;
-  /* height       : 300px; */
-  height          : 100%;
-  /* padding      : 0 var(--pap-padding-side, 50px) var(--pap-padding-top, 100px) var(--pap-padding-side, 50px); */
-  /* background   : var(--pap-color-2, #fff1d0); */
-  resize          : none;
-  background      : transparent;
-  line-height     : 115%;
-  /* margin-bottom: auto; */
+  display            : block;
+  position           : relative;
+  width              : 100%;
+  /* height          : 300px; */
+  height             : 100%;
+  /* padding         : 0 var(--pap-padding-side, 50px) var(--pap-padding-top, 100px) var(--pap-padding-side, 50px); */
+  /* background      : var(--pap-color-2, #fff1d0); */
+  resize             : none;
+  background         : transparent;
+  line-height        : 115%;
+  /* margin-bottom   : auto; */
 
   /* box-shadow : 10px 10px 15px #313941; */
   /* bottom  : 0; */
@@ -184,7 +200,8 @@ textarea#text-input {
   right     : 10px;
   width     : 40px;
   height    : 40px;
-  transition: filter 0.3s ease;
+  opacity   : 0.5;
+  transition: all 0.3s ease;
 }
 
 .sound-button:first-of-type {
@@ -196,21 +213,23 @@ textarea#text-input {
 }
 
 .sound-button:hover {
-  filter: invert(100%);
+  /* filter: invert(100%); */
+  opacity: 1;
 }
 
-.cafe-on {
-  background: url("../images/volume-up.svg") center no-repeat;
+#cafe-button {
+  /* background: url("../images/volume-up.svg") center no-repeat; */
+  background: url("../images/coffee_cup_hot.svg") center no-repeat;
 }
 
-.cafe-off {
-  background: url("../images/volume-mute.svg") center no-repeat;
+#cafe-button.off {
+  background: url("../images/coffee_cup.svg") center no-repeat;
 }
 
-.rain-on {
+#rain-button {
   background: url("../images/tint.svg") center no-repeat;
 }
 
-.rain-off {
+#rain-button.off {
   background: url("../images/tint-slash.svg") center no-repeat;
 }
