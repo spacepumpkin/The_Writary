@@ -6,7 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack --watch --mode=development",
-    "server": "http-server dist"
+    "server": "http-server dist",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "repository": {
     "type": "git",
@@ -18,7 +20,7 @@
   "bugs": {
     "url": "https://github.com/spacepumpkin/The_Writary/issues"
   },
-  "homepage": "https://github.com/spacepumpkin/The_Writary#readme",
+  "homepage": "https://spacepumpkin.github.io/The_Writary",
   "dependencies": {
     "webpack": "^5.4.0",
     "webpack-cli": "^4.1.0"
