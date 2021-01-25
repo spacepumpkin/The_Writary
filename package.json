@@ -8,8 +8,7 @@
     "start": "webpack --watch --mode=development",
     "server": "http-server dist",
     "build": "webpack --mode=production",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "predeploy": "npm run build"
   },
   "repository": {
     "type": "git",
